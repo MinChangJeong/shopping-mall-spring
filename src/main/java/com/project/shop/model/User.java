@@ -68,6 +68,17 @@ public class User extends DateAudit {
 	private Set<Role> roles = new HashSet<>();
 	
 	
+	 
+	
+	public User(String username, String email,String password, String phoneNumber,String address) {
+		super();
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+	}
+
 	public Long getId() {
 		return id;
 	}
