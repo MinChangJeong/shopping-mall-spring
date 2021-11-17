@@ -18,12 +18,11 @@ import com.project.shop.model.audit.DateAudit;
 @Table(name="orders")
 public class Order extends DateAudit{
 	@Id
-	@Column(name = "order_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Size(max = 80)
+	@Size(max = 40)
 	private int orderPrice;
 	
 	@NotBlank
@@ -31,22 +30,22 @@ public class Order extends DateAudit{
 	private String orderAddress;
 	
 	@NotBlank
-	@Size(max = 80)
+	@Size(max = 40)
 	private String recipientName;
 	
 	@NotBlank
-	@Size(max = 80)
+	@Size(max = 20)
 	private String orderState;
 	
 	@NotBlank
-	@Size(max = 80)
+	@Size(max = 20)
 	private boolean refundState;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 

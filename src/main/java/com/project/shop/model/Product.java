@@ -15,77 +15,79 @@ import com.project.shop.model.audit.DateAudit;
 @Table(name="products")
 public class Product extends DateAudit{
 	@Id
-	@Column(name = "product_id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Size(max = 80)
-	private int orderPrice;
+	@Size(max = 40)
+	private String productName;
 	
 	@NotBlank
-	@Size(max = 80)
-	private String orderAddress;
+	@Size(max = 40)
+	private int productPrice;
 	
 	@NotBlank
-	@Size(max = 80)
-	private String recipientName;
+	@Size(max = 40)
+	private int stock;
 	
 	@NotBlank
-	@Size(max = 80)
-	private String orderState;
+	@Size(max = 20)
+	private String category;
 	
 	@NotBlank
-	@Size(max = 80)
-	private boolean refundState;
+	@Size(max = 40)
+	private String prodcutExplain;
 
-	public Long getId() {
+	public Product() {}	
+	
+	public Long getid() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setid(Long id) {
 		this.id = id;
 	}
 
-	public int getOrderPrice() {
-		return orderPrice;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setOrderPrice(int orderPrice) {
-		this.orderPrice = orderPrice;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public String getOrderAddress() {
-		return orderAddress;
+	public int getProductPrice() {
+		return productPrice;
 	}
 
-	public void setOrderAddress(String orderAddress) {
-		this.orderAddress = orderAddress;
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
 
-	public String getRecipientName() {
-		return recipientName;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setRecipientName(String recipientName) {
-		this.recipientName = recipientName;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getOrderState() {
-		return orderState;
+
+	public String getProdcutExplain() {
+		return prodcutExplain;
 	}
 
-	public void setOrderState(String orderState) {
-		this.orderState = orderState;
+	public void setProdcutExplain(String prodcutExplain) {
+		this.prodcutExplain = prodcutExplain;
 	}
 
-	public boolean isRefundState() {
-		return refundState;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setRefundState(boolean refundState) {
-		this.refundState = refundState;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
-	
 	
 }
