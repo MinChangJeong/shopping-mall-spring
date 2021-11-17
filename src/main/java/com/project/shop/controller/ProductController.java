@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.shop.payload.PagedResponse;
+import com.project.shop.payload.ProductResponse;
 import com.project.shop.repository.ProductRepository;
 import com.project.shop.security.CurrentUser;
 import com.project.shop.security.UserPrincipal;
 import com.project.shop.service.ProductService;
+import com.project.shop.util.AppConstants;
 
 @RestController
 @RequestMapping("/api/product")
@@ -24,13 +27,13 @@ public class ProductController {
 	private ProductService productService;
 
 	
-//	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
-//	
-//	@GetMapping("/explore")
-//	public PagedResponse<ProductResponse> getAllPosts(@CurrentUser UserPrincipal currentUser,
-//            									@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-//            									@RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
-//		return productService.getAllProducts(currentUser, page, size);
-//	}
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	
+	@GetMapping("/explore")
+	public PagedResponse<ProductResponse> getAllPosts(@CurrentUser UserPrincipal currentUser,
+            									@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
+            									@RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
+		return productService.getAllProducts(currentUser, page, size);
+	}
 	
 }

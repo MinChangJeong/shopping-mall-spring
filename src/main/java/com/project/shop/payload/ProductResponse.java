@@ -2,7 +2,7 @@ package com.project.shop.payload;
 
 public class ProductResponse {
 
-	private int productId;
+	private Long productId;
 	
 	private String productName;
 	
@@ -10,14 +10,14 @@ public class ProductResponse {
 	
 	private int stack;
 	
-	private String explain;
+	private String productExplain;
 	
 	private String category;
 	
-	public int getProductId() {
+	public Long getProductId() {
 		return productId;
 	}
-	public void setProductId(int productId) {
+	public void setProductId(Long productId) {
 		this.productId = productId;
 	}
 	public String getProductName() {
@@ -38,11 +38,12 @@ public class ProductResponse {
 	public void setStack(int stack) {
 		this.stack = stack;
 	}
-	public String getExplain() {
-		return explain;
+
+	public String getProductExplain() {
+		return productExplain;
 	}
-	public void setExplain(String explain) {
-		this.explain = explain;
+	public void setProductExplain(String productExplain) {
+		this.productExplain = productExplain;
 	}
 	public String getCategory() {
 		return category;
