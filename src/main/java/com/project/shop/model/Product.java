@@ -1,12 +1,7 @@
 package com.project.shop.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,16 +9,15 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
 import com.project.shop.model.audit.DateAudit;
 
-
 @Entity
-@Table(name = "products")
+@Table(name="products")
 public class Product extends DateAudit{
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long product_id;
+	private Long id;
 	
 	@NotBlank
 	@Size(max = 40)
@@ -43,28 +37,16 @@ public class Product extends DateAudit{
 	
 	@NotBlank
 	@Size(max = 40)
-	private String explain;
+	private String prodcutExplain;
 
 	public Product() {}	
 	
-	public Product(Long product_id, String productName, int productPrice,
-			int stock, String category, String explain) {
-		super();
-		this.product_id = product_id;
-		this.productName = productName;
-		this.productPrice = productPrice;
-		this.stock = stock;
-		this.category = category;
-		this.explain = explain;
+	public Long getid() {
+		return id;
 	}
 
-
-	public Long getProduct_id() {
-		return product_id;
-	}
-
-	public void setProduct_id(Long product_id) {
-		this.product_id = product_id;
+	public void setid(Long id) {
+		this.id = id;
 	}
 
 	public String getProductName() {
@@ -91,12 +73,13 @@ public class Product extends DateAudit{
 		this.category = category;
 	}
 
-	public String getExplain() {
-		return explain;
+
+	public String getProdcutExplain() {
+		return prodcutExplain;
 	}
 
-	public void setExplain(String explain) {
-		this.explain = explain;
+	public void setProdcutExplain(String prodcutExplain) {
+		this.prodcutExplain = prodcutExplain;
 	}
 
 	public int getStock() {
@@ -106,6 +89,5 @@ public class Product extends DateAudit{
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	
 	
 }
