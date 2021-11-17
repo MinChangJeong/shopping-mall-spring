@@ -18,7 +18,6 @@ import com.project.shop.model.audit.DateAudit;
 @Table(name = "reviews")
 public class Review extends DateAudit{
 	@Id
-	@Column(name = "review_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 

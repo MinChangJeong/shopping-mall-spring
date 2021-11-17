@@ -1,7 +1,12 @@
 package com.project.shop.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,82 +14,97 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
 import com.project.shop.model.audit.DateAudit;
 
+
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product extends DateAudit{
 	@Id
-	@Column(name = "product_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long product_id;
 	
 	@NotBlank
-	@Size(max = 80)
-	private int orderPrice;
+	@Size(max = 40)
+	private String productName;
 	
 	@NotBlank
-	@Size(max = 80)
-	private String orderAddress;
+	@Size(max = 40)
+	private int productPrice;
 	
 	@NotBlank
-	@Size(max = 80)
-	private String recipientName;
+	@Size(max = 40)
+	private int stock;
 	
 	@NotBlank
-	@Size(max = 80)
-	private String orderState;
+	@Size(max = 20)
+	private String category;
 	
 	@NotBlank
-	@Size(max = 80)
-	private boolean refundState;
+	@Size(max = 40)
+	private String explain;
 
-	public Long getId() {
-		return id;
+	public Product() {}	
+	
+	public Product(Long product_id, String productName, int productPrice,
+			int stock, String category, String explain) {
+		super();
+		this.product_id = product_id;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.stock = stock;
+		this.category = category;
+		this.explain = explain;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+
+	public Long getProduct_id() {
+		return product_id;
 	}
 
-	public int getOrderPrice() {
-		return orderPrice;
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
 	}
 
-	public void setOrderPrice(int orderPrice) {
-		this.orderPrice = orderPrice;
+	public String getProductName() {
+		return productName;
 	}
 
-	public String getOrderAddress() {
-		return orderAddress;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
-	public void setOrderAddress(String orderAddress) {
-		this.orderAddress = orderAddress;
+	public int getProductPrice() {
+		return productPrice;
 	}
 
-	public String getRecipientName() {
-		return recipientName;
+	public void setProductPrice(int productPrice) {
+		this.productPrice = productPrice;
 	}
 
-	public void setRecipientName(String recipientName) {
-		this.recipientName = recipientName;
+	public String getCategory() {
+		return category;
 	}
 
-	public String getOrderState() {
-		return orderState;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public void setOrderState(String orderState) {
-		this.orderState = orderState;
+	public String getExplain() {
+		return explain;
 	}
 
-	public boolean isRefundState() {
-		return refundState;
+	public void setExplain(String explain) {
+		this.explain = explain;
 	}
 
-	public void setRefundState(boolean refundState) {
-		this.refundState = refundState;
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 	

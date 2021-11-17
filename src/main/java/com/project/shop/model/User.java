@@ -34,7 +34,6 @@ import com.project.shop.model.audit.DateAudit;
 })
 public class User extends DateAudit {
 	@Id
-	@Column(name = "user_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -67,8 +66,7 @@ public class User extends DateAudit {
 					@JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	
-	
-	 
+	public User() {}
 	
 	public User(String username, String email,String password, String phoneNumber,String address) {
 		super();
