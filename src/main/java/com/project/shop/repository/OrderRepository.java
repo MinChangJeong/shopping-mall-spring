@@ -6,12 +6,12 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.shop.model.Product;
+import com.project.shop.model.Order;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long>{
-	Optional<Product> findById(Long productId);
+public interface OrderRepository extends JpaRepository<Order, Long>{
+	Optional<Order> findById(Long orderId);
 	
-	List<Product> findByIdIn(List<Long> productIds);
+	List<Order> findByIdIn(List<Long> orderIds);
 	
 }

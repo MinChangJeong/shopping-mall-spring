@@ -11,7 +11,7 @@ public class ModelMapper {
 		productResponse.setProductId(product.getId());
 		productResponse.setProductName(product.getProductName());
 		productResponse.setProductPrice(product.getProductPrice());
-		productResponse.setProductExplain(product.getProdcutExplain());
+		productResponse.setProductExplain(product.getProductExplain());
 		productResponse.setStack(product.getStock());
 		productResponse.setCategory(product.getCategory());
 		

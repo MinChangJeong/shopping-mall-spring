@@ -41,6 +41,8 @@ public class Order extends DateAudit{
 	@Size(max = 20)
 	private boolean refundState;
 
+	
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -96,6 +98,23 @@ public class Order extends DateAudit{
 	public void setRefundState(boolean refundState) {
 		this.refundState = refundState;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 	
 	
 }

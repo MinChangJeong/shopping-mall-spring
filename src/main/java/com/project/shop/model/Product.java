@@ -37,7 +37,7 @@ public class Product extends DateAudit{
 	
 	@NotBlank
 	@Size(max = 40)
-	private String prodcutExplain;
+	private String productExplain;
 
 	public Product() {}	
 	
@@ -75,12 +75,12 @@ public class Product extends DateAudit{
 	}
 
 
-	public String getProdcutExplain() {
-		return prodcutExplain;
+	public String getProductExplain() {
+		return productExplain;
 	}
-
-	public void setProdcutExplain(String prodcutExplain) {
-		this.prodcutExplain = prodcutExplain;
+	
+	public void setProductExplain(String productExplain) {
+		this.productExplain = productExplain;
 	}
 
 	public int getStock() {
