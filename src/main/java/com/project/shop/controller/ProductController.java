@@ -30,7 +30,7 @@ public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@GetMapping("/explore")
-	public PagedResponse<ProductResponse> getAllPosts(@CurrentUser UserPrincipal currentUser,
+	public PagedResponse<ProductResponse> getAllProducts(@CurrentUser UserPrincipal currentUser,
             									@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
             									@RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
 		return productService.getAllProducts(currentUser, page, size);

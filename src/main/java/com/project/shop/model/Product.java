@@ -15,7 +15,6 @@ import com.project.shop.model.audit.DateAudit;
 @Table(name="products")
 public class Product extends DateAudit{
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -38,6 +37,7 @@ public class Product extends DateAudit{
 	@NotBlank
 	@Size(max = 40)
 	private String productExplain;
+	
 
 	public Product() {}	
 	

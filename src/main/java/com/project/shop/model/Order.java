@@ -41,8 +41,6 @@ public class Order extends DateAudit{
 	@Size(max = 20)
 	private boolean refundState;
 
-	
-	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
