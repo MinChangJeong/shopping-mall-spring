@@ -14,9 +14,12 @@ import org.springframework.stereotype.Service;
 
 import com.project.shop.exception.BadRequestException;
 import com.project.shop.model.Product;
+import com.project.shop.model.User;
 import com.project.shop.payload.PagedResponse;
+import com.project.shop.payload.ProductRequest;
 import com.project.shop.payload.ProductResponse;
 import com.project.shop.repository.ProductRepository;
+import com.project.shop.repository.UserRepository;
 import com.project.shop.security.UserPrincipal;
 import com.project.shop.util.AppConstants;
 import com.project.shop.util.ModelMapper;
@@ -26,8 +29,23 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
+	public Product registerProduct(ProductRequest productRequest) {
+		Product product = new Product();
+		
+		product.setProductName(productRequest.getProductName());
+		product.setProductExplain(productRequest.getProductExplain());
+		product.setProductPrice(productRequest.getProductPrice());
+		product.setStock(productRequest.getStock());
+		product.setCategory(productRequest.getCategory());
+		
+		return productRepository.save(product);
+	}
+	
 	public PagedResponse<ProductResponse> getAllProducts(UserPrincipal currentUser, int page, int size) {
 		validatePageNumberAndSize(page, size);
 		

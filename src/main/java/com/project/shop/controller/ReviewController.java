@@ -31,12 +31,7 @@ public class ReviewController {
 	@PostMapping("/createReview")
 	@PreAuthorize("hasRole('USER')")
 	public ResponseEntity<?> createReview(@Valid @RequestBody ReviewRequest reviewReqeust, Long productId,
-					@CurrentUser UserPrincipal currentUser) {
-		
-		System.out.println(reviewReqeust.getProductId());
-		System.out.println(reviewReqeust.getReviewContent());
-		System.out.println(reviewReqeust.getReviewScore());
-		
+					@CurrentUser UserPrincipal currentUser) {		
 		Review review = reviewService.createReview(reviewReqeust, currentUser);
 		
 		// Rest API를 구현하는 과정에서 특정값을 포함한 URI를 전달하는 상황

@@ -103,4 +103,26 @@ public class AuthController {
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
+    
+    @PostMapping("/registerAdmin")
+    public ResponseEntity<?> registerAdmin(@Valid @RequestBody SignUpRequest signUpRequest) {
+        // Creating user's account
+        User admin = new User(signUpRequest.getUsername(), signUpRequest.getEmail(), 
+        			signUpRequest.getPassword(), signUpRequest.getPhoneNumber(), signUpRequest.getAddress());
+
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+
+        Role userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+                .orElseThrow(() -> new AppException("Admin Role not set."));
+
+        admin.setRoles(Collections.singleton(userRole));
+        
+        User result = userRepository.save(admin);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentContextPath().path("/api/users/{adminname}")
+                .buildAndExpand(result.getUsername()).toUri();
+
+        return ResponseEntity.created(location).body(new ApiResponse(true, "Admin registered successfully"));
+    }
 }
