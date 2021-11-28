@@ -22,7 +22,7 @@ import com.project.shop.repository.ProductRepository;
 import com.project.shop.repository.UserRepository;
 import com.project.shop.security.UserPrincipal;
 import com.project.shop.util.AppConstants;
-import com.project.shop.util.ModelMapper;
+import com.project.shop.util.ProductModelMapper;
 
 @Service
 public class ProductService {
@@ -51,8 +51,6 @@ public class ProductService {
 		
 		//Retrieve product
 		Pageable pagealbe = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
-				
-		System.out.println(pagealbe);
 		
 		Page<Product> products = productRepository.findAll(pagealbe);
 		
@@ -64,7 +62,7 @@ public class ProductService {
 		List<Long> productIds = products.map(Product::getId).getContent();
 		
 		List<ProductResponse> productResponse = products.map(product -> {
-			return ModelMapper.mapProductToProductResponse(product);
+			return ProductModelMapper.mapProductToProductResponse(product);
 		}).getContent();
 		
 		return new PagedResponse<>(productResponse, products.getNumber(),

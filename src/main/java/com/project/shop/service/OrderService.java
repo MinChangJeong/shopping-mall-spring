@@ -16,6 +16,7 @@ import com.project.shop.exception.BadRequestException;
 import com.project.shop.model.Order;
 import com.project.shop.model.Product;
 import com.project.shop.model.User;
+import com.project.shop.payload.OrderResponse;
 import com.project.shop.payload.PagedResponse;
 import com.project.shop.payload.ProductResponse;
 import com.project.shop.repository.OrderRepository;
@@ -23,7 +24,8 @@ import com.project.shop.repository.ProductRepository;
 import com.project.shop.repository.UserRepository;
 import com.project.shop.security.UserPrincipal;
 import com.project.shop.util.AppConstants;
-import com.project.shop.util.ModelMapper;
+import com.project.shop.util.OrderModelMapper;
+import com.project.shop.util.ProductModelMapper;
 
 @Service
 public class OrderService {
@@ -59,10 +61,31 @@ public class OrderService {
 		
 	}
 	
+	public PagedResponse<OrderResponse> getAllOrderList(UserPrincipal currentUser, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+		
+		Page<Order> orders = orderRepository.findOrderByUserId(currentUser.getId(), pageable);
+		
+		if(orders.getNumberOfElements() == 0) {
+			return new PagedResponse<>(Collections.emptyList(), orders.getNumber(), orders.getSize(), 
+					orders.getTotalElements(), orders.getTotalPages(), orders.isLast());
+		}
+		
+		List<OrderResponse> orderResponses = orders.map(order -> {
+			return OrderModelMapper.mapOrderToOrderResponse(order);
+		}).getContent();
+		
+		return new PagedResponse<>(orderResponses, orders.getNumber(),
+				orders.getSize(), orders.getTotalElements(), orders.getTotalPages(), orders.isLast());
+		
+	}
+	
+	// 주문한 상품들중 중복을 제거한 경우 
 	public PagedResponse<ProductResponse> getAllOrderedProducts(UserPrincipal currentUser, int page, int size) {
 		validatePageNumberAndSize(page, size);
 		
 		List<Long> orderIds = orderRepository.findOrderedProductIdByUserId(currentUser.getId());
+		System.out.println(orderIds);
 		
 		Pageable pagealbe = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
@@ -75,11 +98,11 @@ public class OrderService {
 		
 		List<Long> productIds = products.map(Product::getId).getContent();
 		
-		List<ProductResponse> productResponse = products.map(product -> {
-			return ModelMapper.mapProductToProductResponse(product);
+		List<ProductResponse> productResponses = products.map(product -> {
+			return ProductModelMapper.mapProductToProductResponse(product);
 		}).getContent();
 		
-		return new PagedResponse<>(productResponse, products.getNumber(),
+		return new PagedResponse<>(productResponses, products.getNumber(),
 				products.getSize(), products.getTotalElements(), products.getTotalPages(), products.isLast());
 	}
 	

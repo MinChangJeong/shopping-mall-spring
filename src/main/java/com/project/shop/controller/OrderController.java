@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.project.shop.model.Order;
 import com.project.shop.payload.ApiResponse;
+import com.project.shop.payload.OrderResponse;
 import com.project.shop.payload.PagedResponse;
 import com.project.shop.payload.ProductResponse;
 import com.project.shop.security.CurrentUser;
@@ -26,6 +27,7 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+
 	
 	@GetMapping("/orderedProducts")
 	@PreAuthorize("hasRole('USER')")
@@ -33,6 +35,14 @@ public class OrderController {
             									@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
             									@RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
 		return orderService.getAllOrderedProducts(currentUser, page, size);
+	}
+	
+	@GetMapping("/orderedList")
+	@PreAuthorize("hasRole('USER')")
+	public PagedResponse<OrderResponse> getAllOrders(@CurrentUser UserPrincipal currentUser,
+            									@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
+            									@RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
+		return orderService.getAllOrderList(currentUser, page, size);
 	}
 	
 	@GetMapping("/createOrder")

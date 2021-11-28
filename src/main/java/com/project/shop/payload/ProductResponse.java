@@ -14,6 +14,8 @@ public class ProductResponse {
 	
 	private String category;
 	
+	
+	
 	public Long getProductId() {
 		return productId;
 	}

@@ -42,6 +42,7 @@ public class ProductController {
 	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 	
 	@GetMapping("/explore")
+	@PreAuthorize("hasRole('USER')")
 	public PagedResponse<ProductResponse> getAllProducts(@CurrentUser UserPrincipal currentUser,
             									@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
             									@RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {

@@ -3,7 +3,7 @@ package com.project.shop.util;
 import com.project.shop.model.Product;
 import com.project.shop.payload.ProductResponse;
 
-public class ModelMapper {
+public class ProductModelMapper {
 	public static ProductResponse mapProductToProductResponse(Product product) {
 		
 		ProductResponse productResponse = new ProductResponse();
