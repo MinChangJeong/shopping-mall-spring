@@ -1,10 +1,12 @@
 package com.project.shop.model;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -37,6 +39,9 @@ public class Product extends DateAudit{
 	@NotBlank
 	@Size(max = 40)
 	private String productExplain;
+	
+	@OneToMany(mappedBy = "product")
+	private List<Review> reviews;
 	
 
 	public Product() {}	
@@ -90,5 +95,17 @@ public class Product extends DateAudit{
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+	
+	
 	
 }

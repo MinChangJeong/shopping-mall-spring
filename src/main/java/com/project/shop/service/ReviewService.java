@@ -37,7 +37,7 @@ public class ReviewService {
 		
 		review.setAuthorName(user.getUsername());
 		review.setReviewContent(reviewRequest.getReviewContent());
-		review.setReviewScore(review.getReviewScore());
+		review.setReviewScore(reviewRequest.getReviewScore());
 		
 		review.setUser(user);
 		review.setProduct(product);

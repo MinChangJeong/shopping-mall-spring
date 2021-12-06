@@ -85,7 +85,6 @@ public class OrderService {
 		validatePageNumberAndSize(page, size);
 		
 		List<Long> orderIds = orderRepository.findOrderedProductIdByUserId(currentUser.getId());
-		System.out.println(orderIds);
 		
 		Pageable pagealbe = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 

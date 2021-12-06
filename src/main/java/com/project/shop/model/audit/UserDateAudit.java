@@ -9,17 +9,13 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 @JsonIgnoreProperties(
-        value = {"createdBy", "updatedBy"},
+        value = {"createdBy"},
         allowGetters = true
 )
 public abstract class UserDateAudit extends DateAudit {
     @CreatedBy
     @Column(nullable = false, updatable = false)
     private Long createdBy;
-
-    @LastModifiedBy
-    @Column(nullable = false)
-    private Long updatedBy;
 
     public Long getCreatedBy() {
         return createdBy;
@@ -29,11 +25,4 @@ public abstract class UserDateAudit extends DateAudit {
         this.createdBy = createdBy;
     }
 
-    public Long getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(Long updatedBy) {
-        this.updatedBy = updatedBy;
-    }
 }

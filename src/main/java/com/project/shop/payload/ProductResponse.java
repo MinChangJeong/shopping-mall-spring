@@ -1,5 +1,9 @@
 package com.project.shop.payload;
 
+import java.util.List;
+
+import com.project.shop.model.Review;
+
 public class ProductResponse {
 
 	private Long productId;
@@ -14,7 +18,7 @@ public class ProductResponse {
 	
 	private String category;
 	
-	
+	private List<ReviewResponse> reviews;
 	
 	public Long getProductId() {
 		return productId;
@@ -53,6 +57,12 @@ public class ProductResponse {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
+	public List<ReviewResponse> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<ReviewResponse> reviews) {
+		this.reviews = reviews;
+	}
+
 	
 }
